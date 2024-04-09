@@ -1,88 +1,41 @@
 {
   "name": "ashomecare",
-  "version": "0.1.0",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
   "dependencies": {
-    "@auth0/auth0-react": "^2.2.4",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.91",
-    "@types/react": "^18.2.69",
-    "@types/react-dom": "^18.2.22",
-    "dotenv": "^16.4.5",
+    "install": "^0.13.0",
+    "node": "^18.20.0",
+    "npm": "^10.5.0",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primereact": "^10.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.3",
-    "react-scripts": "^5.0.1",
-    "reflect-metadata": "^0.2.1",
-    "rxjs": "^7.8.1",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "reflect-metadata": "^0.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-decorators": "^7.24.1",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/plugin-transform-private-property-in-object": "^7.24.1",
-    "babel-loader": "^9.1.3",
-    "babel-plugin-parameter-decorator": "^1.0.16",
-    "babel-plugin-transform-typescript-metadata": "^0.3.2",
-    "inversify": "^6.0.1",
-    "ts-loader": "^9.5.1",
-    "tslint": "^6.1.3",
-    "tslint-config-prettier": "^1.18.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.10.0"
-  },
-  "babel": {
-    "plugins": [
-      [
-        [
-          "@babel/plugin-proposal-decorators",
-          {
-            "legacy": true
-          }
-        ],
-        "babel-plugin-parameter-decorator"
-      ]
-    ],
-    "presets": [
-      [
-        "@babel/preset-typescript",
-        {
-          "onlyRemoveTypeImports": true
-        }
-      ]
-    ]
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.6",
+    "inversify": "^6.0.2",
+    "nanoid": "^5.0.6",
+    "query-string": "^9.0.0",
+    "rxjs": "^7.8.1",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0"
   }
 }

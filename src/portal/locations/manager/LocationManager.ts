@@ -5,38 +5,38 @@ import "reflect-metadata";
 import { inject, injectable } from "inversify";
 import { LocationInfo, LocationDetails } from "../models/location";
 import { ILocationManager } from "./ILocationManager";
-import { LocationSymbols } from "../models/LocationSymbols";
 import { IStorageProvider } from "./providers/IStorageProvider";
+import { LocationSymbols } from "../models/LocationSymbols";
 
 @injectable()
 export class LocationManager implements ILocationManager {
-    private _storage: IStorageProvider;
-    private env: string = process.env.REACT_APP_STORAGE_ENV;
+    private _provider: IStorageProvider;
+    private env: string = 'local';
 
     constructor(
-        @inject(LocationSymbols.StorageFactory) protected _storageProvider: (env: string) => IStorageProvider
+        @inject(LocationSymbols.LocationStorageFactory) protected _storageProvider: (env: string) => IStorageProvider
     ) { 
-        this._storage = _storageProvider(this.env);
+        this._provider = _storageProvider(this.env);
     }
 
     getLocationList(): Promise<LocationInfo[]> {
-        return Promise.resolve(this._storage.getLocationList());     
+        return Promise.resolve(this._provider.getLocationList());     
     }
     
-    getLocationDetails(info: LocationInfo): Promise<LocationDetails> {
-        throw new Error("Method not implemented.");
+    getLocationDetails(id: string): Promise<LocationDetails> {
+        return Promise.resolve(this._provider.getLocationDetails(id));
     }
     
     addLocation(locationDetails: LocationDetails): Promise<boolean> {
-        const result = this._storage.addLocation(locationDetails)
+        const result = this._provider.addLocation(locationDetails)
         return Promise.resolve(result);
     }
 
     updateLocation(locationDetails: LocationDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        return Promise.resolve(this._provider.updateLocation(locationDetails))
     }
     
     deleteLocation(info: LocationInfo): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        return Promise.resolve(this._provider.deleteLocation(info))
     }
 }

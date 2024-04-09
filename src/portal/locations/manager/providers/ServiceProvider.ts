@@ -12,7 +12,7 @@ export class ServiceProvider implements IStorageProvider {
     async getLocationList(): Promise<LocationInfo[]> {
         throw new Error("Method not implemented.");
     }
-    getLocationDetails(info: LocationInfo): Promise<LocationDetails> {
+    getLocationDetails(id: string): Promise<LocationDetails> {
         throw new Error("Method not implemented.");
     }
     addLocation(locationDetails: LocationDetails): Promise<boolean> {

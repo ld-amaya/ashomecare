@@ -4,8 +4,6 @@
 
 export const LocationSymbols = {
     LocationManager: Symbol.for('LocationManager'),
-    StorageProvider: Symbol.for('StorageProvider'),
-    LocalStorageProvider: Symbol.for('LocalStorageProvider'),
-    ServiceProvider: Symbol.for('ServiceProvider'),
-    StorageFactory: Symbol.for('StorageFactory')
+    LocationStorageFactory: Symbol.for('LocationStorageFactory'),
+    LocationStorageProvider: Symbol.for('LocationStorageProvider')
 }

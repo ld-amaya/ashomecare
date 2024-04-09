@@ -3,18 +3,18 @@
  */
 
 import { Address } from "../../../models/Address";
-import { User } from "../../../models/User";
+import { UserInfo } from "../../user/models/User";
 
 export interface LocationInfo {
     id: string;
     name: string;
     address: Address;
-    landline: string;
+    landline?: string;
+    userId?: string;
 }
 
 export interface LocationDetails {
     info: LocationInfo;
-    owner: User;
     wifi?: {
         provider: string;
         network: string;
