@@ -13,13 +13,15 @@ import { UserModule } from "./portal/user/manager/UserModule";
 import { GeneratorModule } from "./portal/utilities/generateId/GeneratorModule";
 import { NotificationModule } from "./portal/utilities/notification/NotificationModule";
 import { Routes } from "./Routes";
+import { OrganizationModule } from "./portal/organizations/manager/OrganizationModule";
 
 // Bind modules
 loadModules(
 	LocationModule,
 	UserModule,
 	GeneratorModule,
-	NotificationModule
+	NotificationModule,
+	OrganizationModule
 );
 
 export default function App() {

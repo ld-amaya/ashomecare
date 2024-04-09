@@ -54,6 +54,13 @@ export const SideBar = () => {
 					},
 				},
 				{
+					label: "Organizations",
+					icon: "pi pi-shield",
+					command: () => {
+						navigate(`portal/settings/organizations`, { relative: "path" });
+					},
+				},
+				{
 					label: "Clients",
 					icon: "pi pi-users",
 					command: () => {

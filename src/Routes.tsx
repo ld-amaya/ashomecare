@@ -9,6 +9,7 @@ import { useState } from "react";
 import { LocationContext } from "./portal/locations/LocationContext";
 import { User } from "./portal/user/User";
 import { Clients } from "./portal/clients/Clients";
+import { Organizations } from "./portal/organizations/Organizations";
 
 export const Routes = () => {
     const [locationId, setLocationId] = useState<string>("");
@@ -49,7 +50,16 @@ export const Routes = () => {
 											element: <LocationEdit />,
 										}
 									],
-                                },
+								},
+								{
+									path: "organizations",
+									children: [
+										{
+											path: "",
+											element: <Organizations />
+										}
+									]
+								},
                                 {
                                     path: "clients",
                                     children: [

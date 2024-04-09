@@ -4,19 +4,21 @@
 
 import { Address } from "../../../models/Address";
 
-export type UserType = 'client' | 'landlord' | 'user' | string;
+export type UserType = 'client' | 'landlord' | 'user' | 'clientManager' | string;
 
 export interface UserInfo {
     id: string;
     firstName: string;
     lastName: string;
+    position?: string;
     email?: string;
     mobile?: string;
     createDate?: Date;
     createdBy?: string;
     modifiedDate?: Date;
     modifiedBy?: string;
-    type: UserType
+    type: UserType;
+    status?: string;
 }
 
 export interface UserDetails {
