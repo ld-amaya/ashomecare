@@ -2,11 +2,7 @@
  * Copyright 2024 Lou Amaya - All Rights Reserved
  */
 
-import { BreadCrumb } from "primereact/breadcrumb";
-import { Button } from "primereact/button";
 import { Divider } from "primereact/divider";
-import { InputText } from "primereact/inputtext";
-
 
 export const Portal = () => {
 	
