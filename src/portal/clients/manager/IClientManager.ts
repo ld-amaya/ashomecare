@@ -3,5 +3,5 @@
  */
 
 export interface IClientManager {
-    getClients(locationId: string)
+    getClients(residenceId: string)
 }

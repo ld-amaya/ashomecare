@@ -7,45 +7,45 @@ import { Menubar } from "primereact/menubar";
 import { MenuItem } from "primereact/menuitem";
 import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
-import { LocationInfo } from "../locations/models/location";
-import { useLocationManager } from "../locations/manager/LocationModule";
-import { useLocationContext } from "../locations/LocationContext";
+import { ResidenceInfo } from "../residences/models/Residence";
+import { useResidenceManager } from "../residences/manager/ResidenceModule";
+import { useResidenceContext } from "../residences/ResidenceContext";
 import { Menu } from "primereact/menu";
 import { Button } from "primereact/button";
 
 export const NavBar = () => {
-	const { setLocationId, setIsSettings } = useLocationContext();
-	const [locations, setLocations] = useState<LocationInfo[]>([]);
-	const [locationItems, setLocationItems] = useState<Record<string, any>[]>([]);
+	const { setResidenceId, setIsSettings } = useResidenceContext();
+	const [residences, setResidences] = useState<ResidenceInfo[]>([]);
+	const [residenceItems, setResidenceItems] = useState<Record<string, any>[]>([]);
 
 	const menu = useRef(null);
 	const navigate = useNavigate();
-	const locationManager = useLocationManager();
+	const residenceManager = useResidenceManager();
 
 	useEffect(() => {
-		getLocations();
+		getResidences();
 	}, []);
 
 	useEffect(() => {
-		if (!locations) return;
+		if (!residences) return;
 
-		const locItems = locations.map((loc) => {
+		const locItems = residences.map((loc) => {
 			return {
 				label: loc.name,
 				command: () => {
-					setLocationId(loc.id);
+					setResidenceId(loc.id);
 					setIsSettings(false);
-					navigate(`../portal/location/${loc.id}`);
+					navigate(`../portal/residence/${loc.id}`);
 				},
 			};
 		});
-		setLocationItems(locItems);
-	}, [locations]);
+		setResidenceItems(locItems);
+	}, [residences]);
 
-	const getLocations = async () => {
-		const locationList: LocationInfo[] = await locationManager.getLocationList();
-		if (locationList.length) {
-			setLocations(locationList);
+	const getResidences = async () => {
+		const residenceList: ResidenceInfo[] = await residenceManager.getResidenceList();
+		if (residenceList.length) {
+			setResidences(residenceList);
 		}
 	};
 
@@ -59,9 +59,9 @@ export const NavBar = () => {
 			},
 		},
 		{
-			label: "Locations",
+			label: "Residences",
 			icon: "pi pi-compass",
-			items: locationItems,
+			items: residenceItems,
 			command: () => console.log("*** Hi Lou"),
 		},
 	];
@@ -72,7 +72,7 @@ export const NavBar = () => {
 			icon: 'pi pi-cog',
 			command: () => {
 				setIsSettings(true)
-				navigate('../portal/settings/locations', { replace: true })
+				navigate('../portal/settings/residence', { replace: true })
 			}
 		}
 	]

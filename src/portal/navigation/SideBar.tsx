@@ -8,11 +8,10 @@ import { MenuItem } from "primereact/menuitem";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { useNotificationManager } from "../utilities/notification/NotificationModule";
-import { useLocationContext } from "../locations/LocationContext";
-import * as path from "path";
+import { useResidenceContext } from "../residences/ResidenceContext";
 
 export const SideBar = () => {
-	const { locationId } = useLocationContext();
+	const { residenceId } = useResidenceContext();
 	const [isSettings, setIsSettings] = useState<boolean>(false);
 	const [ menuList, setMenuList ] = useState<MenuItem[]>([]);
 
@@ -47,10 +46,10 @@ export const SideBar = () => {
 		if (isSettings) {
 			items = [
 				{
-					label: "Locations",
+					label: "Residences",
 					icon: "pi pi-building",
 					command: () => {
-						navigate(`portal/settings/locations`, { relative: "path" });
+						navigate(`portal/settings/residence`, { relative: "path" });
 					},
 				},
 				{
@@ -81,7 +80,7 @@ export const SideBar = () => {
 					label: "Clients",
 					icon: "pi pi-users",
 					command: () => {
-						navigate(`portal/location/${locationId}/clients`, {
+						navigate(`portal/Residence/${residenceId}/clients`, {
 							relative: "path",
 						});
 					},

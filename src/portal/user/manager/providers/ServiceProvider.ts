@@ -6,16 +6,16 @@ export class ServiceProvider implements IUserStorageProvider {
         throw new Error("Method not implemented.");
     }
     getUserDetails(id: string): Promise<UserDetails> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented of: ${id} `);
     }
     updateUser(userDetails: UserDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented. ${userDetails.info.id}`);
     }
     addUser(userDetails: UserDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented. ${userDetails.info.id}`);
     }
     deleteUser(userInfo: UserInfo): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implement for ${userInfo.id}`);
     }
 
 }

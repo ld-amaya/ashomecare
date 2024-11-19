@@ -12,7 +12,6 @@ export const Portal = () => {
 			<Divider />
 			<div className='flex flex-column gap-3'>
 				This is portal
-				
 			</div>
 		</div>
 	);

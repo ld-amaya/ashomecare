@@ -6,18 +6,19 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { Card } from "primereact/card";
 import { useEffect, useState } from "react";
-import { LocationInfo } from "./models/location";
+import { ResidenceInfo } from "./models/Residence";
 import { useNavigate } from "react-router-dom";
 import { BreadCrumb } from "primereact/breadcrumb";
 import { MenuItem } from "primereact/menuitem";
 import { Divider } from "primereact/divider";
-import { useLocationManager } from "./manager/LocationModule";
+import { useResidenceManager } from "./manager/ResidenceModule";
 
-export const Locations = () => {
+export const Residence = () => {
 	const [search, setSearch] = useState<string>("");
-	const [locations, setLocations] = useState<LocationInfo[]>([]);
+	const [residences, setResidences] = useState<ResidenceInfo[]>([]);
 	const [items, setItems] = useState<MenuItem[]>([]);
-	const locationManager = useLocationManager();
+
+	const residenceManager = useResidenceManager();
 
 	const navigate = useNavigate();
 
@@ -26,27 +27,27 @@ export const Locations = () => {
 	useEffect(() => {
 		setItems([
 			{
-				label: "Locations",
+				label: "Residences",
 			},
 		]);
-		const getLocationInfo = async () => {
-			const locInfo: LocationInfo[] = await locationManager.getLocationList();
-			setLocations(locInfo);
+		const getResidenceInfo = async () => {
+			const locInfo: ResidenceInfo[] = await residenceManager.getResidenceList();
+			setResidences(locInfo);
 		};
-		getLocationInfo();
+		getResidenceInfo();
 	}, []);
 
-	const displayLocations = (): JSX.Element => {
-		const element = locations?.map((location, idx) => {
-			const address = `${location.address.address1}, ${location.address.city}, ${location.address.state}, ${location.address.zip}`;
+	const displayResidences = (): JSX.Element => {
+		const element = residences?.map((residence, idx) => {
+			const address = `${residence.address.address1}, ${residence.address.city}, ${residence.address.state}, ${residence.address.zip}`;
 			const header = (
 				<div className='flex justify-content-between'>
-					<div>{location.name}</div>
+					<div>{residence.name}</div>
 					<div>
 						<i
 							className='pi pi-pencil cursor-pointer'
 							onClick={() => {
-								navigate(`../locations/edit/${location.id}`);
+								navigate(`../residence/edit/${residence.id}`);
 							}}
 						/>
 					</div>
@@ -80,7 +81,7 @@ export const Locations = () => {
 					<Button
 						icon='pi pi-plus'
 						onClick={() => {
-							navigate("../locations/add");
+							navigate("../residence/add");
 						}}
 					/>
 					<InputText
@@ -92,7 +93,7 @@ export const Locations = () => {
 					/>
 				</div>
 				<div className='flex flex-column p-5'>
-					{displayLocations()}
+					{displayResidences()}
 				</div>
 			</div>
 		</div>

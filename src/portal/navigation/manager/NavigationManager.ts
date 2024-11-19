@@ -2,7 +2,7 @@
  * Copyright 2024 Lou Amaya - All Rights Reserved
  */
 
-import { inject, injectable } from "inversify";
+import { injectable } from "inversify";
 import { INavigationManager } from "./INavigationManager";
 
 @injectable()
