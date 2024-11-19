@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { injectable } from "inversify";
-import { LocationInfo, LocationDetails } from "../../models/location";
+import { ResidenceInfo, ResidenceDetails } from "../../models/Residence";
 import { IStorageProvider } from "./IStorageProvider";
 
 /**
@@ -9,19 +9,19 @@ import { IStorageProvider } from "./IStorageProvider";
 @injectable()
 export class ServiceProvider implements IStorageProvider {
     
-    async getLocationList(): Promise<LocationInfo[]> {
+    async getResidenceList(): Promise<ResidenceInfo[]> {
         throw new Error("Method not implemented.");
     }
-    getLocationDetails(id: string): Promise<LocationDetails> {
+    getResidenceDetails(id: string): Promise<ResidenceDetails> {
         throw new Error("Method not implemented.");
     }
-    addLocation(locationDetails: LocationDetails): Promise<boolean> {
+    addResidence(residenceDetails: ResidenceDetails): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
-    updateLocation(locationDetails: LocationDetails): Promise<boolean> {
+    updateResidence(residenceDetails: ResidenceDetails): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
-    deleteLocation(info: LocationInfo): Promise<boolean> {
+    deleteResidence(info: ResidenceInfo): Promise<boolean> {
         throw new Error("Method not implemented.");
     }
 }

@@ -14,27 +14,27 @@ import { MenuItem } from "primereact/menuitem";
 import { Divider } from "primereact/divider";
 import { Fieldset } from "primereact/fieldset";
 
-import { LocationDetails } from "../models/location";
+import { ResidenceDetails } from "../models/Residence";
 import { useIDGenerator } from "../../utilities/generateId/GeneratorModule";
 import { UserDetails, UserInfo } from "../../user/models/User";
-import { useLocationManager } from "../manager/LocationModule";
+import { useResidenceManager } from "../manager/ResidenceModule";
 import { useUserManager } from "../../user/manager/UserModule";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useNotificationManager } from "../../utilities/notification/NotificationModule";
 import { ToastMessage } from "primereact/toast";
 
-export const LocationEdit = () => {
+export const ResidenceEdit = () => {
 	const [breadcrumb, setBreadcrumb] = useState<MenuItem[]>([]);
 	const [disabled, setDisabled] = useState<boolean>(true);
 	const [name, setName] = useState<string>("");
 
-	const [locationDetails, setLocationDetails] = useState<LocationDetails>(undefined);
+	const [residenceDetails, setResidenceDetails] = useState<ResidenceDetails>(undefined);
 	const [address, setAddress] = useState<Address>(undefined);
 	const [owner, setOwner] = useState<UserInfo>(undefined);
-	const [locationId, setLocationsId] = useState<string>("");
-	const [locationHeader, setLocationHeader] = useState<string>('');
+	const [residenceId, setResidencesId] = useState<string>("");
+	const [residenceHeader, setResidenceHeader] = useState<string>('');
 
-	const locationManager = useLocationManager();
+	const residenceManager = useResidenceManager();
 	const userManager = useUserManager();
 	const IdManager = useIDGenerator();
 	const navigate = useNavigate();
@@ -46,10 +46,10 @@ export const LocationEdit = () => {
 	useEffect(() => {
 		const urlParse: string[] = pathManager.pathname.split("/");
 		if (urlParse.some((p) => p === "edit")) {
-			setLocationsId(urlParse.pop());
-			setLocationHeader('Edit Location')
+			setResidencesId(urlParse.pop());
+			setResidenceHeader('Edit Residence')
 		} else {
-			setLocationHeader('Add Location');
+			setResidenceHeader('Add Residence');
 			setOwner({
 				id: IdManager.create("user"),
 				firstName: "",
@@ -60,7 +60,7 @@ export const LocationEdit = () => {
 		
 		setBreadcrumb([
 			{
-				label: "Locations",
+				label: "residences",
 				command: () => navigate(-1),
 			},
 			{
@@ -70,16 +70,16 @@ export const LocationEdit = () => {
 	}, []);
 
 	useEffect(() => {
-		getLocationDetails();
-	}, [locationId]);
+		getResidenceDetails();
+	}, [residenceId]);
 
 	useEffect(() => {
 		if (!name || !address || !owner) return;
 
-		setLocationDetails({
+		setResidenceDetails({
 			info: {
-				...locationDetails?.info,
-				id: locationId || IdManager.create("loc"),
+				...residenceDetails?.info,
+				id: residenceId || IdManager.create("loc"),
 				name: name,
 				userId: owner.id,
 				address: address,
@@ -93,25 +93,25 @@ export const LocationEdit = () => {
 		userManager.updateUser({
 			info: owner
 		});
-		const result = await locationManager.updateLocation(locationDetails);
+		const result = await residenceManager.updateResidence(residenceDetails);
 		const toast: ToastMessage = result
-			? { severity: "success", detail: "Location successfully saved" }
-			: { severity: "warn", detail: "Location not saved, contact Lou" };
+			? { severity: "success", detail: "Residence successfully saved" }
+			: { severity: "warn", detail: "Residence not saved, contact Lou" };
 
 		notificatioNManager.show(toast);
 		navigate(-1);
 	};
 
 	/**
-	 * Get the location details based on locationID
-	 * @param locationId
+	 * Get the Residence details based on ResidenceID
+	 * @param residenceId
 	 */
-	const getLocationDetails = async () => {
-		const locationDetails: LocationDetails = await locationManager.getLocationDetails(locationId);
-		if (locationDetails) {
-			setName(locationDetails.info.name);
-			setAddress(locationDetails.info.address);
-			getOwner(locationDetails.info.userId);
+	const getResidenceDetails = async () => {
+		const residenceDetails: ResidenceDetails = await residenceManager.getResidenceDetails(residenceId);
+		if (residenceDetails) {
+			setName(residenceDetails.info.name);
+			setAddress(residenceDetails.info.address);
+			getOwner(residenceDetails.info.userId);
 		}
 	};
 
@@ -133,10 +133,10 @@ export const LocationEdit = () => {
 		}
 	};
 
-	const LocationAddress = () => {
+	const residenceAddress = () => {
 		return (
 			<div className='mt-5 md:px-5 px-3'>
-				<div className='text-lg'>Location Address</div>
+				<div className='text-lg'>Residence Address</div>
 				<Fieldset className='mt-3'>
 					<div className='flex md:flex-row flex-column gap-2'>
 						<div className='flex flex-column w-full gap-2'>
@@ -302,7 +302,7 @@ export const LocationEdit = () => {
 						shape='circle'
 						style={{ backgroundColor: "#9c27b0", color: "#ffffff" }}
 					/>
-					{locationHeader}
+					{residenceHeader}
 				</div>
 				<div>
 					<Button
@@ -315,17 +315,17 @@ export const LocationEdit = () => {
 				</div>
 			</div>
 			<div className='flex flex-column gap-2 mt-5 md:px-5 px-3'>
-				<label htmlFor='locationName' className='text-lg'>
-					Location Name
+				<label htmlFor='ResidenceName' className='text-lg'>
+					Residence Name
 				</label>
 				<InputText
 					className='w-full'
-					id='locationName'
+					id='ResidenceName'
 					value={name}
 					onChange={(e) => setName(e.target.value)}
 				/>
 			</div>
-			{LocationAddress()}
+			{residenceAddress()}
 			{OwnerDetails()}
 		</div>
 	);

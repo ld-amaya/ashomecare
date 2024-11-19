@@ -1,18 +1,17 @@
 import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Portal } from "./portal";
-import { Locations } from "./portal/locations/Locations";
-import { LocationEdit } from "./portal/locations/views/LocationEdit";
-import { Location } from "./portal/locations/views/Location";
+import { Residence } from "./portal/residences/Residence";
+import { ResidenceEdit } from "./portal/residences/views/ResidenceEdit";
 import { NavBar } from "./portal/navigation/NavBar";
 import { SideBar } from "./portal/navigation/SideBar";
 import { useState } from "react";
-import { LocationContext } from "./portal/locations/LocationContext";
+import { ResidenceContext } from "./portal/residences/ResidenceContext";
 import { User } from "./portal/user/User";
 import { Clients } from "./portal/clients/Clients";
 import { Organizations } from "./portal/organizations/Organizations";
 
 export const Routes = () => {
-    const [locationId, setLocationId] = useState<string>("");
+    const [residenceId, setResidenceId] = useState<string>("");
     const [isSettings, setIsSettings] = useState<boolean>(false);
 
 	const router = createBrowserRouter([
@@ -28,27 +27,44 @@ export const Routes = () => {
 							element: <Portal />,
 						},
 						{
+							path: "location",
+							children: [
+								{
+									path: "",
+									element: <Residence />,
+								},
+								{
+									path: ":id",
+									element: <Residence />,
+								},
+								{
+									path: ":id/clients",
+									element: <User />,
+								},
+							],
+						},
+						{
 							path: "settings",
 							children: [
 								{
 									path: "",
-									element: <Locations />,
+									element: <Residence />,
 								},
 								{
-									path: "locations",
+									path: "residences",
 									children: [
 										{
 											path: "",
-											element: <Locations />,
+											element: <Residence />,
 										},
 										{
 											path: "add",
-											element: <LocationEdit />,
+											element: <ResidenceEdit />,
 										},
 										{
-											path: "edit/:locationId",
-											element: <LocationEdit />,
-										}
+											path: "edit/:residenceId",
+											element: <ResidenceEdit />,
+										},
 									],
 								},
 								{
@@ -56,35 +72,18 @@ export const Routes = () => {
 									children: [
 										{
 											path: "",
-											element: <Organizations />
-										}
-									]
-								},
-                                {
-                                    path: "clients",
-                                    children: [
-                                        {
-                                            path: '',
-                                            element: <Clients />
-                                        }
-                                    ]
-                                }
-							],
-						},
-						{
-							path: "location",
-							children: [
-								{
-									path: "",
-									element: <Locations />,
+											element: <Organizations />,
+										},
+									],
 								},
 								{
-									path: ":id",
-									element: <Location />,
-								},
-								{
-									path: ":id/clients",
-									element: <User />,
+									path: "clients",
+									children: [
+										{
+											path: "",
+											element: <Clients />,
+										},
+									],
 								},
 							],
 						},
@@ -109,15 +108,15 @@ export const Routes = () => {
 	}
 
     const context = {
-        locationId, setLocationId,
+        residenceId, setResidenceId,
         isSettings, setIsSettings
     };
     
 	return (
 		<div>
-			<LocationContext.Provider value={ context }>
+			<ResidenceContext.Provider value={context}>
 				<RouterProvider router={router} />
-			</LocationContext.Provider>
+			</ResidenceContext.Provider>
 		</div>
 	);
 };

@@ -8,7 +8,7 @@ import "primeicons/primeicons.css"; //icons
 import "primeflex/primeflex.css"; // flex
 
 import { loadModules } from "./inversify/config";
-import { LocationModule } from "./portal/locations/manager/LocationModule";
+import { ResidenceModule } from "./portal/residences/manager/ResidenceModule";
 import { UserModule } from "./portal/user/manager/UserModule";
 import { GeneratorModule } from "./portal/utilities/generateId/GeneratorModule";
 import { NotificationModule } from "./portal/utilities/notification/NotificationModule";
@@ -17,7 +17,7 @@ import { OrganizationModule } from "./portal/organizations/manager/OrganizationM
 
 // Bind modules
 loadModules(
-	LocationModule,
+	ResidenceModule,
 	UserModule,
 	GeneratorModule,
 	NotificationModule,
