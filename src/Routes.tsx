@@ -27,7 +27,7 @@ export const Routes = () => {
 							element: <Portal />,
 						},
 						{
-							path: "location",
+							path: "residence",
 							children: [
 								{
 									path: "",
@@ -51,7 +51,7 @@ export const Routes = () => {
 									element: <Residence />,
 								},
 								{
-									path: "residences",
+									path: "residence",
 									children: [
 										{
 											path: "",

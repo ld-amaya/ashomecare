@@ -47,7 +47,7 @@ export const Residence = () => {
 						<i
 							className='pi pi-pencil cursor-pointer'
 							onClick={() => {
-								navigate(`../residences/edit/${residence.id}`);
+								navigate(`../residence/edit/${residence.id}`);
 							}}
 						/>
 					</div>
@@ -81,7 +81,7 @@ export const Residence = () => {
 					<Button
 						icon='pi pi-plus'
 						onClick={() => {
-							navigate("../residences/add");
+							navigate("../residence/add");
 						}}
 					/>
 					<InputText

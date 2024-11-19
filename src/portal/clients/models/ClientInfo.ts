@@ -6,7 +6,7 @@ export interface ClientInfo {
     id: string;
     firstName: string;
     lastName: string;
-    locationId: string;
+    residenceId: string;
     orgId: string
     mobile?: string;
     SSN?: string;

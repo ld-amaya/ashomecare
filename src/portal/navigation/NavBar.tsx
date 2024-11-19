@@ -72,7 +72,7 @@ export const NavBar = () => {
 			icon: 'pi pi-cog',
 			command: () => {
 				setIsSettings(true)
-				navigate('../portal/settings/Residences', { replace: true })
+				navigate('../portal/settings/residence', { replace: true })
 			}
 		}
 	]

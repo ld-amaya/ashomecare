@@ -35,7 +35,7 @@ export const Organizations = () => {
 					<Button
 						icon='pi pi-plus'
 						onClick={() => {
-							navigate("../locations/add");
+							navigate("../residence/add");
 						}}
 					/>
 					<InputText

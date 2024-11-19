@@ -49,7 +49,7 @@ export const SideBar = () => {
 					label: "Residences",
 					icon: "pi pi-building",
 					command: () => {
-						navigate(`portal/settings/residences`, { relative: "path" });
+						navigate(`portal/settings/residence`, { relative: "path" });
 					},
 				},
 				{

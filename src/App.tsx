@@ -14,9 +14,11 @@ import { GeneratorModule } from "./portal/utilities/generateId/GeneratorModule";
 import { NotificationModule } from "./portal/utilities/notification/NotificationModule";
 import { Routes } from "./Routes";
 import { OrganizationModule } from "./portal/organizations/manager/OrganizationModule";
+import { StorageModule } from "./environment/StorageModule";
 
 // Bind modules
 loadModules(
+	StorageModule,
 	ResidenceModule,
 	UserModule,
 	GeneratorModule,

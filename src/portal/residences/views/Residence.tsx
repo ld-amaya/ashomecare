@@ -17,7 +17,7 @@ export const Residence = () => {
     
     useEffect(() => {
         const urlPaths = pathManager.pathname.split('/');
-        const locIndex = urlPaths.findIndex(path => path === 'Residence');
+        const locIndex = urlPaths.findIndex(path => path === 'residence');
         if(locIndex > -1) setResidenceId(urlPaths[locIndex + 1]);
     }, [])
 
