@@ -36,7 +36,7 @@ export class ResidenceManager implements IResidenceManager {
         return Promise.resolve(this._provider.updateResidence(residenceDetails))
     }
     
-    deleteResidence(info: ResidenceInfo): Promise<boolean> {
-        return Promise.resolve(this._provider.deleteResidence(info))
+    deleteResidence(residenceId: string): Promise<boolean> {
+        return Promise.resolve(this._provider.deleteResidence(residenceId))
     }
 }

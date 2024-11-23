@@ -9,5 +9,5 @@ export interface IStorageProvider {
     getResidenceDetails(id: string): Promise<ResidenceDetails>
     addResidence(ResidenceDetails: ResidenceDetails): Promise<boolean>
     updateResidence(ResidenceDetails: ResidenceDetails): Promise<boolean>
-    deleteResidence(info: ResidenceInfo): Promise<boolean>
+    deleteResidence(residenceId: string): Promise<boolean>
 }

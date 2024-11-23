@@ -102,6 +102,16 @@ export const ResidenceEdit = () => {
 		navigate(-1);
 	};
 
+	const handleDelete = async () => {
+		const result = await residenceManager.deleteResidence(residenceDetails.info.id);
+		const toast: ToastMessage = result
+			? { severity: "success", detail: "Residence successfully deleted" }
+			: { severity: "warn", detail: "Residence not saved, contact Lou" };
+
+		notificatioNManager.show(toast);
+		navigate(-1);
+	};
+
 	/**
 	 * Get the Residence details based on ResidenceID
 	 * @param residenceId
@@ -304,13 +314,20 @@ export const ResidenceEdit = () => {
 					/>
 					{residenceHeader}
 				</div>
-				<div>
+				<div className = 'flex gap-2'>
 					<Button
 						label='Save'
 						onClick={() => {
 							handleSave();
 						}}
 						disabled={disabled}
+					/>
+					<Button
+						label="Delete"
+						severity="warning"
+						onClick={() => {
+							handleDelete()
+						}}
 					/>
 				</div>
 			</div>

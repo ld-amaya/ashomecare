@@ -52,14 +52,18 @@ export class LocalProvider implements IStorageProvider {
         return Promise.resolve(this.addResidence(residenceDetails));
     }
 
-    deleteResidence(info: ResidenceInfo): Promise<boolean> {
+    deleteResidence(residenceId: string): Promise<boolean> {
         this._residences = this._storage.get(this.LOC_KEY);
-        const idx = this._residences?.findIndex(loc => loc.info.id === info.id);
+
+        const idx = this._residences?.findIndex(loc => loc.info.id === residenceId);
+        
         if (idx > -1) {
             this._residences.splice(idx, 1);
             this._storage.set(this.LOC_KEY, this._residences);
             return Promise.resolve(true);
         }
+
+        this._storage.set(this.LOC_KEY, this._residences);
         return Promise.resolve(false);
     }
 }
