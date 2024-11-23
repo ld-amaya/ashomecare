@@ -8,5 +8,5 @@ export interface IResidenceManager {
     getResidenceDetails(id: string): Promise<ResidenceDetails>
     addResidence(residenceDetails: ResidenceDetails): Promise<boolean>
     updateResidence(residenceDetails: ResidenceDetails): Promise<boolean>
-    deleteResidence(info: ResidenceInfo): Promise<boolean>
+    deleteResidence(residenceId: string): Promise<boolean>
 }
