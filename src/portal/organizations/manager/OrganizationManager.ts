@@ -13,16 +13,16 @@ export class OrgnizationManager implements IOrganizationManager {
         throw new Error("Method not implemented.");
     }
     getOrganizationDetails(orgId: string): Promise<OrganizationDetails> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${orgId}`);
     }
     addOrganization(orgDetails: OrganizationDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${JSON.stringify(orgDetails)}`);
     }
     updateOrganization(orgDetails: OrganizationDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${JSON.stringify(orgDetails)}`);
     }
-    deleteOrganization(orgInfo: OrganizationInfo): Promise<boolean> {
-        throw new Error("Method not implemented.");
+    deleteOrganization(orgId: string): Promise<boolean> {
+        throw new Error(`Method not implemented for ${orgId}`);
     }
 
 }

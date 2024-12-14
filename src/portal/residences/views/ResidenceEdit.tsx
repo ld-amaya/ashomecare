@@ -50,12 +50,15 @@ export const ResidenceEdit = () => {
 			setResidenceHeader('Edit Residence')
 		} else {
 			setResidenceHeader('Add Residence');
-			setOwner({
+
+			const owner: UserInfo = new UserInfo({
 				id: IdManager.create("user"),
 				firstName: "",
 				lastName: "",
 				type: "landlord",
 			});
+
+			setOwner(owner);
 		}
 		
 		setBreadcrumb([
@@ -93,7 +96,9 @@ export const ResidenceEdit = () => {
 		userManager.updateUser({
 			info: owner
 		});
+
 		const result = await residenceManager.updateResidence(residenceDetails);
+
 		const toast: ToastMessage = result
 			? { severity: "success", detail: "Residence successfully saved" }
 			: { severity: "warn", detail: "Residence not saved, contact Lou" };
@@ -134,12 +139,14 @@ export const ResidenceEdit = () => {
 		if (ownerDetails) {
 			setOwner(ownerDetails.info);
 		} else {
-			setOwner({
+			const owner: UserInfo = new UserInfo({
 				id: IdManager.create("user"),
-				firstName: '',
-				lastName: '',
-				type: 'landlord'
-			})
+				firstName: "",
+				lastName: "",
+				type: "landlord",
+			});
+			
+			setOwner(owner)
 		}
 	};
 

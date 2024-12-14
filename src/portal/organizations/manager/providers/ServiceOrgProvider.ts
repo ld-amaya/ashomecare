@@ -14,16 +14,16 @@ export class ServiceOrgProvider implements IOrgStorageProvider {
         throw new Error("Method not implemented.");
     }
     getOrganizationDetails(orgId: string): Promise<OrganizationDetails> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${orgId}`);
     }
     addOrganization(orgDetails: OrganizationDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${JSON.stringify(orgDetails)}`);
     }
     updateOrganization(orgDetails: OrganizationDetails): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${JSON.stringify(orgDetails) }`);
     }
     deleteOrganization(orgId: string): Promise<boolean> {
-        throw new Error("Method not implemented.");
+        throw new Error(`Method not implemented for ${orgId}`);
     }
 
 }
