@@ -11,12 +11,12 @@ import { IResidenceManager } from "./IResidenceManager";
 @injectable()
 export class ResidenceManager implements IResidenceManager {
     private _provider: IStorageProvider;
-    private env: string = 'local';
+    private _env: string = import.meta.env.VITE_API_ENV;
 
     constructor(
         @inject(ResidenceSymbols.ResidenceStorageFactory) protected _storageProvider: (env: string) => IStorageProvider
     ) { 
-        this._provider = _storageProvider(this.env);
+        this._provider = _storageProvider(this._env);
     }
 
     getResidenceList(): Promise<ResidenceInfo[]> {
