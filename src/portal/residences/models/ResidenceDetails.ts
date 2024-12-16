@@ -13,7 +13,7 @@ export interface ResidenceInfo {
 }
 
 export interface ResidenceDetails {
-    info: ResidenceInfo;
+    info: ResidenceInfo;    
     wifi?: Wifi[];
 }
 

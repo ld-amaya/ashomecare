@@ -7,7 +7,7 @@ import { Menubar } from "primereact/menubar";
 import { MenuItem } from "primereact/menuitem";
 import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
-import { ResidenceInfo } from "../residences/models/Residence";
+import { ResidenceInfo } from "../residences/models/ResidenceDetails";
 import { useResidenceManager } from "../residences/manager/ResidenceModule";
 import { useResidenceContext } from "../residences/ResidenceContext";
 import { Menu } from "primereact/menu";
