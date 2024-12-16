@@ -14,7 +14,7 @@ import { MenuItem } from "primereact/menuitem";
 import { Divider } from "primereact/divider";
 import { Fieldset } from "primereact/fieldset";
 
-import { ResidenceDetails } from "../models/Residence";
+import { ResidenceDetails } from "../models/ResidenceDetails";
 import { useIDGenerator } from "../../utilities/generateId/GeneratorModule";
 import { UserDetails, UserInfo } from "../../user/models/User";
 import { useResidenceManager } from "../manager/ResidenceModule";
@@ -33,6 +33,7 @@ export const ResidenceEdit = () => {
 	const [owner, setOwner] = useState<UserInfo>(undefined);
 	const [residenceId, setResidencesId] = useState<string>("");
 	const [residenceHeader, setResidenceHeader] = useState<string>('');
+	const [canWrite, setCanWrite] = useState<boolean>(false)
 
 	const residenceManager = useResidenceManager();
 	const userManager = useUserManager();
@@ -45,12 +46,12 @@ export const ResidenceEdit = () => {
 
 	useEffect(() => {
 		const urlParse: string[] = pathManager.pathname.split("/");
-		if (urlParse.some((p) => p === "edit")) {
-			setResidencesId(urlParse.pop());
-			setResidenceHeader('Edit Residence')
-		} else {
-			setResidenceHeader('Add Residence');
 
+		setResidencesId(urlParse.pop());
+
+		if (urlParse.some((p) => p === "edit")) {
+			setCanWrite(true);
+		} else if (urlParse.some((p) => p === "add")) {
 			const owner: UserInfo = new UserInfo({
 				id: IdManager.create("user"),
 				firstName: "",
@@ -59,15 +60,16 @@ export const ResidenceEdit = () => {
 			});
 
 			setOwner(owner);
-		}
+			setCanWrite(true);
+		} 
 		
 		setBreadcrumb([
 			{
-				label: "residences",
+				label: "Residences",
 				command: () => navigate(-1),
 			},
 			{
-				label: urlParse.pop(),
+				label: canWrite ? urlParse.pop() : name,
 			},
 		]);
 	}, []);
@@ -89,7 +91,7 @@ export const ResidenceEdit = () => {
 			},
 		});
 
-		setDisabled(false);
+		setDisabled(false || !canWrite);
 	}, [name, address, owner]);
 
 	const handleSave = async () => {
@@ -127,6 +129,13 @@ export const ResidenceEdit = () => {
 			setName(residenceDetails.info.name);
 			setAddress(residenceDetails.info.address);
 			getOwner(residenceDetails.info.userId);
+			setResidenceHeader(
+				canWrite
+					? `Edit ${residenceDetails.info.name}`
+					: residenceDetails.info.name
+			);
+		} else {
+			setResidenceHeader("Add Residence");
 		}
 	};
 
@@ -136,6 +145,7 @@ export const ResidenceEdit = () => {
 	 */
 	const getOwner = async (userId: string) => {
 		const ownerDetails: UserDetails = await userManager.getUserDetail(userId);
+
 		if (ownerDetails) {
 			setOwner(ownerDetails.info);
 		} else {
@@ -168,6 +178,7 @@ export const ResidenceEdit = () => {
 										address1: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 						<div className='flex flex-column w-full gap-2'>
@@ -182,6 +193,7 @@ export const ResidenceEdit = () => {
 										address2: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 					</div>
@@ -198,6 +210,7 @@ export const ResidenceEdit = () => {
 										city: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 						<div className='flex md:flex-row flex-column gap-2 w-full'>
@@ -213,6 +226,7 @@ export const ResidenceEdit = () => {
 											state: e.target.value,
 										})
 									}
+									disabled={!canWrite}
 								/>
 							</div>
 							<div className='flex flex-column w-full gap-2'>
@@ -227,6 +241,7 @@ export const ResidenceEdit = () => {
 											zip: e.target.value,
 										})
 									}
+									disabled={!canWrite}
 								/>
 							</div>
 						</div>
@@ -254,6 +269,7 @@ export const ResidenceEdit = () => {
 										firstName: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 						<div className='flex flex-column w-full gap-2'>
@@ -268,6 +284,7 @@ export const ResidenceEdit = () => {
 										lastName: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 					</div>
@@ -284,6 +301,7 @@ export const ResidenceEdit = () => {
 										email: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 						<div className='flex flex-column w-full gap-2'>
@@ -299,6 +317,7 @@ export const ResidenceEdit = () => {
 										mobile: e.target.value,
 									})
 								}
+								disabled={!canWrite}
 							/>
 						</div>
 					</div>
@@ -321,7 +340,7 @@ export const ResidenceEdit = () => {
 					/>
 					{residenceHeader}
 				</div>
-				<div className = 'flex gap-2'>
+				<div className='flex gap-2'>
 					<Button
 						label='Save'
 						onClick={() => {
@@ -330,11 +349,12 @@ export const ResidenceEdit = () => {
 						disabled={disabled}
 					/>
 					<Button
-						label="Delete"
-						severity="warning"
+						label='Delete'
+						severity='warning'
 						onClick={() => {
-							handleDelete()
+							handleDelete();
 						}}
+						disabled={disabled}
 					/>
 				</div>
 			</div>

@@ -3,7 +3,7 @@
  */
 import "reflect-metadata";
 import { inject, injectable } from "inversify";
-import { ResidenceInfo, ResidenceDetails } from "../../models/Residence";
+import { ResidenceInfo, ResidenceDetails } from "../../models/ResidenceDetails";
 import { IStorageProvider } from "./IStorageProvider";
 import { LocalStorage } from "../../../../environment/LocalStorage";
 import { ILocalStorage } from "../../../../environment/ILocalStorage";

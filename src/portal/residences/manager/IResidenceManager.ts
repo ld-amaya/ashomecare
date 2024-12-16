@@ -1,7 +1,7 @@
 /**
  * Copyright 2024 Lou Amaya - All Rights Reserved
  */
-import { ResidenceDetails, ResidenceInfo } from "../models/Residence";
+import { ResidenceDetails, ResidenceInfo } from "../models/ResidenceDetails";
 
 export interface IResidenceManager {
     getResidenceList(): Promise<ResidenceInfo[]>

@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { injectable } from "inversify";
-import { ResidenceInfo, ResidenceDetails } from "../../models/Residence";
+import { ResidenceInfo, ResidenceDetails } from "../../models/ResidenceDetails";
 import { IStorageProvider } from "./IStorageProvider";
 
 /**
